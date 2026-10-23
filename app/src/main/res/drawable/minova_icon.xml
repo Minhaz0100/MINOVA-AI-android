@@ -1,0 +1,40 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+    <!-- Outer geometric hexagonal intelligence frame -->
+    <path
+        android:fillColor="#0B1326"
+        android:strokeColor="#263859"
+        android:strokeWidth="1.5"
+        android:pathData="M32,4L56,18L56,46L32,60L8,46L8,18Z" />
+    <!-- Subtle inner violet intelligence facet -->
+    <path
+        android:fillColor="#1A7C5CFC"
+        android:pathData="M32,8L52,20L32,32L12,20Z" />
+    <!-- Connected idea circuit lines (restrained violet) -->
+    <path
+        android:strokeColor="#7C5CFC"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:pathData="M17,22L32,12L47,22" />
+    <!-- Geometric architectural 'M' core (electric cyan & azure) -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M16,45L16,21L22.5,21L32,35.5L41.5,21L48,21L48,45L42,45L42,30.5L32,45.5L22,30.5L22,45Z" />
+    <!-- Top intelligence apex node (violet + cyan core) -->
+    <path
+        android:fillColor="#7C5CFC"
+        android:pathData="M32,7L36.5,12.5L32,18L27.5,12.5Z" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M32,9.8L34.2,12.5L32,15.2L29.8,12.5Z" />
+    <!-- Left and right connected vertex nodes -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M19,21m-2.5,0a2.5,2.5 0,1 1,5 0a2.5,2.5 0,1 1,-5 0" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M45,21m-2.5,0a2.5,2.5 0,1 1,5 0a2.5,2.5 0,1 1,-5 0" />
+</vector>

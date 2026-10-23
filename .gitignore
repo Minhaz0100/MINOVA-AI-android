@@ -1,0 +1,56 @@
+*.iml
+.gradle
+.kotlin
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+.env
+debug.keystore
+*-debug.log
+
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+secrets/
+secret/
+credentials/
+**/secrets/**
+**/credentials/**
+
+# Firebase private/service-account credentials
+service-account*.json
+*-firebase-adminsdk-*.json
+firebase-adminsdk*.json
+
+# Local machine and build output
+local.properties
+**/local.properties
+/build/
+**/build/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Exclude Firebase client configuration
+app/google-services.json
+**/google-services.json
+
+# Google AI Studio internal artifacts and backups
+.aistudio/

@@ -1,0 +1,70 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="220dp"
+    android:height="64dp"
+    android:viewportWidth="220"
+    android:viewportHeight="64">
+    <!-- Left Emblem: Geometric Hexagonal Intelligence Mark (centered at x=32, y=32) -->
+    <path
+        android:fillColor="#0B1326"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="1.6"
+        android:pathData="M32,6L54,19L54,45L32,58L10,45L10,19Z" />
+    <path
+        android:fillColor="#227C5CFC"
+        android:pathData="M32,10L50,20.5L32,31L14,20.5Z" />
+    <path
+        android:strokeColor="#7C5CFC"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M18,22L32,13L46,22" />
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M18,44L18,22L23.5,22L32,35L40.5,22L46,22L46,44L41,44L41,30.5L32,44L23,30.5L23,44Z" />
+    <path
+        android:fillColor="#7C5CFC"
+        android:pathData="M32,8.5L36,13.5L32,18.5L28,13.5Z" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M32,11L34,13.5L32,16L30,13.5Z" />
+
+    <!-- Wordmark: "MINOVA" in balanced geometric letterforms (y=21..43) -->
+    <!-- M (x=68..88) -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M68,43L68,21L72.2,21L78,31.5L83.8,21L88,21L88,43L84,43L84,28.5L78,39L72,28.5L72,43Z" />
+    <!-- I (x=93..97) -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M93,21L97,21L97,43L93,43Z" />
+    <!-- N (x=102..119) -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M102,43L102,21L106,21L115,35.5L115,21L119,21L119,43L115,43L106,28.5L106,43Z" />
+    <!-- O (Octagonal/Geometric ring x=124..144) -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M130,21L138,21L144,27L144,37L138,43L130,43L124,37L124,27Z M131.6,24.8L128,28.4L128,35.6L131.6,39.2L136.4,39.2L140,35.6L140,28.4L136.4,24.8Z" />
+    <!-- V (x=148..166) -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M148,21L152.4,21L157,36.8L161.6,21L166,21L159.2,43L154.8,43Z" />
+    <!-- A (x=168..186) -->
+    <path
+        android:fillColor="#F8FAFC"
+        android:pathData="M175,21L179,21L186,43L181.6,43L180.1,38L173.9,38L172.4,43L168,43Z M175,34.4L179,34.4L177,27.2Z" />
+
+    <!-- "AI" Pill Accent Badge (x=191..216, y=21..43) -->
+    <path
+        android:fillColor="#1600E5FF"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="1.2"
+        android:pathData="M196,21L211,21A5,5 0,0 1,216 26L216,38A5,5 0,0 1,211 43L196,43A5,5 0,0 1,191 38L191,26A5,5 0,0 1,196 21Z" />
+    <!-- A in AI (x=194.5..205.5) -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M198.8,26L201.4,26L205.6,38L202.8,38L202,35.4L198.2,35.4L197.4,38L194.6,38Z M198.9,33L201.3,33L200.1,29.1Z" />
+    <!-- I in AI (x=207.8..210.8) -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M207.8,26L210.8,26L210.8,38L207.8,38Z" />
+</vector>

@@ -1,0 +1,6 @@
+{
+  "name": "MINOVA AI",
+  "description": "MINOVA AI — Premium Android AI assistant with streaming chat, Prompt Library, file analysis, voice input, and smart response controls. Developed by Minhaz.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

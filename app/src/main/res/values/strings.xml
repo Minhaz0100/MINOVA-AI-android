@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MINOVA AI</string>
+    <string name="prompt_library_title">Prompt Library</string>
+    <string name="prompt_library_subtitle">Curated &amp; custom reusable AI prompts</string>
+    <string name="prompt_library_search_placeholder">Search prompts by title, topic, or tag…</string>
+    <string name="prompt_library_add_custom">New Custom Prompt</string>
+    <string name="prompt_library_use_prompt">Use Prompt</string>
+    <string name="prompt_library_empty_title">No Matching Prompts</string>
+    <string name="prompt_library_empty_subtitle">Try adjusting your search query or category filter, or create your own reusable custom prompt.</string>
+    <string name="web_search_title">Web Search</string>
+    <string name="web_search_description">Request web-grounded answers when available. Availability depends on backend configuration.</string>
+    <string name="continue_without_web_search">Continue without Web Search</string>
+    <string name="developer_attribution">Developed by Minhaz</string>
+    <string name="gemini_disclosure">Powered by Google Gemini via the MINOVA AI backend. Google did not develop or endorse MINOVA AI.</string>
+</resources>

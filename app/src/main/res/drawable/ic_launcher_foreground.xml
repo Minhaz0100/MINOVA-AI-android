@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Outer geometric hexagonal intelligence frame within 24..84 safe zone -->
+    <path
+        android:fillColor="#0D162B"
+        android:strokeColor="#2E446E"
+        android:strokeWidth="1.8"
+        android:pathData="M54,24L80,39L80,69L54,84L28,69L28,39Z" />
+    <!-- Upper prism intelligence facet -->
+    <path
+        android:fillColor="#247C5CFC"
+        android:pathData="M54,28L76,41L54,54L32,41Z" />
+    <!-- Connected idea circuit lines (restrained violet) -->
+    <path
+        android:strokeColor="#7C5CFC"
+        android:strokeWidth="2.4"
+        android:strokeLineCap="round"
+        android:pathData="M37,43L54,32L71,43" />
+    <!-- Geometric architectural 'M' core (electric cyan) -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M36,68L36,42L43,42L54,58L65,42L72,42L72,68L65.5,68L65.5,52.5L54,68.5L42.5,52.5L42.5,68Z" />
+    <!-- Top intelligence apex diamond (violet + cyan core) -->
+    <path
+        android:fillColor="#7C5CFC"
+        android:pathData="M54,26.5L59,32.5L54,38.5L49,32.5Z" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M54,29.5L56.5,32.5L54,35.5L51.5,32.5Z" />
+    <!-- Left and right connected vertex nodes -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M39.5,42m-2.6,0a2.6,2.6 0,1 1,5.2 0a2.6,2.6 0,1 1,-5.2 0" />
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M68.5,42m-2.6,0a2.6,2.6 0,1 1,5.2 0a2.6,2.6 0,1 1,-5.2 0" />
+</vector>

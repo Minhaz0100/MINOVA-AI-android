@@ -1,0 +1,130 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isValidUserProfile(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.email is string && data.email.size() >= 3 && data.email.size() <= 254 &&
+             (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 100)) &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             (!('lastLoginAt' in data) || (data.lastLoginAt is timestamp && data.lastLoginAt <= request.time));
+    }
+
+    function isValidConversation(data, userId) {
+      return data.id is string && data.id.size() >= 1 && data.id.size() <= 128 &&
+             data.userId is string && data.userId == userId &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 200 &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time &&
+             (!('isPinned' in data) || data.isPinned is bool) &&
+             (!('isArchived' in data) || data.isArchived is bool) &&
+             (!('lastMessage' in data) || (data.lastMessage is string && data.lastMessage.size() <= 1000)) &&
+             (!('responseStyle' in data) || (data.responseStyle is string && data.responseStyle.size() <= 50)) &&
+             (!('responseLanguage' in data) || (data.responseLanguage is string && data.responseLanguage.size() <= 50)) &&
+             (!('responseFormat' in data) || (data.responseFormat is string && data.responseFormat.size() <= 50));
+    }
+
+    function isValidMessage(data, convId) {
+      return data.id is string && data.id.size() >= 1 && data.id.size() <= 128 &&
+             data.conversationId is string && data.conversationId == convId &&
+             data.sender is string && (data.sender == 'USER' || data.sender == 'ASSISTANT') &&
+             data.content is string && data.content.size() <= 50000 &&
+             data.timestamp is timestamp && data.timestamp <= request.time &&
+             data.status is string && (data.status == 'SENT' || data.status == 'STREAMING' || data.status == 'ERROR') &&
+             (!('errorMessage' in data) || (data.errorMessage is string && data.errorMessage.size() <= 1000)) &&
+             (!('attachmentType' in data) || (data.attachmentType is string && data.attachmentType.size() <= 100)) &&
+             (!('attachmentName' in data) || (data.attachmentName is string && data.attachmentName.size() <= 255)) &&
+             (!('codeSnippet' in data) || (data.codeSnippet is string && data.codeSnippet.size() <= 30000)) &&
+             (!('codeLanguage' in data) || (data.codeLanguage is string && data.codeLanguage.size() <= 50)) &&
+             (!('isPinned' in data) || data.isPinned is bool);
+    }
+
+    // 1. User Profiles
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+
+      allow create: if isOwner(userId) &&
+                       incoming().keys().hasAll(['userId', 'email', 'createdAt']) &&
+                       incoming().keys().hasOnly(['userId', 'email', 'displayName', 'createdAt', 'lastLoginAt']) &&
+                       isValidUserProfile(incoming());
+
+      allow update: if isOwner(userId) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt &&
+                       isValidUserProfile(incoming()) &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['email', 'displayName', 'lastLoginAt']);
+
+      allow delete: if isOwner(userId);
+
+      // 2. User-Scoped Conversations
+      match /conversations/{conversationId} {
+        allow get, list: if isOwner(userId);
+
+        allow create: if isOwner(userId) &&
+                         isValidId(conversationId) &&
+                         conversationId == incoming().id &&
+                         incoming().keys().hasAll(['id', 'userId', 'title', 'createdAt', 'updatedAt']) &&
+                         incoming().keys().hasOnly(['id', 'userId', 'title', 'createdAt', 'updatedAt', 'isPinned', 'isArchived', 'lastMessage', 'responseStyle', 'responseLanguage', 'responseFormat']) &&
+                         isValidConversation(incoming(), userId);
+
+        allow update: if isOwner(userId) &&
+                         incoming().id == existing().id &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         isValidConversation(incoming(), userId) &&
+                         incoming().diff(existing()).affectedKeys().hasOnly(['title', 'updatedAt', 'isPinned', 'isArchived', 'lastMessage', 'responseStyle', 'responseLanguage', 'responseFormat']);
+
+        allow delete: if isOwner(userId);
+
+        // 3. User-Scoped Messages
+        match /messages/{messageId} {
+          allow get, list: if isOwner(userId);
+
+          allow create: if isOwner(userId) &&
+                           isValidId(messageId) &&
+                           messageId == incoming().id &&
+                           incoming().keys().hasAll(['id', 'conversationId', 'sender', 'content', 'timestamp', 'status']) &&
+                           incoming().keys().hasOnly(['id', 'conversationId', 'sender', 'content', 'timestamp', 'status', 'errorMessage', 'attachmentType', 'attachmentName', 'codeSnippet', 'codeLanguage', 'isPinned']) &&
+                           isValidMessage(incoming(), conversationId);
+
+          allow update: if isOwner(userId) &&
+                           incoming().id == existing().id &&
+                           incoming().conversationId == existing().conversationId &&
+                           incoming().timestamp == existing().timestamp &&
+                           isValidMessage(incoming(), conversationId) &&
+                           incoming().diff(existing()).affectedKeys().hasOnly(['content', 'status', 'errorMessage', 'codeSnippet', 'codeLanguage', 'isPinned']);
+
+          allow delete: if isOwner(userId);
+        }
+      }
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
